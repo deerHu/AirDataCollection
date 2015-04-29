@@ -14,12 +14,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-public class JTable4Data extends JFrame {
+public class ChangeTableWithList extends JFrame {
 	/**
 	 * Provide a fixed column in a table.
+	 * 
+	 * <code><p>public boolean isCellEditable(int row, int column) {<p>
+	        return getModel().isCellEditable(convertRowIndexToModel(row),<p>
+	                                         convertColumnIndexToModel(column));<p>
+	    }<p>
+	    </code> so we can also directly rewrite the isCellEditable() in the table
+	 * model.
+	 * @author Gaowen
+	 * 
 	 */
 
-	public JTable4Data() {
+	public ChangeTableWithList() {
 		super();
 		setTitle("Data List");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -39,7 +48,7 @@ public class JTable4Data extends JFrame {
 			}
 			tableValueV.add(rowV);
 		}
-		final JTableUtil panel = new JTableUtil(columnNameV, tableValueV, 1);
+		final TTT panel = new TTT(columnNameV, tableValueV, 1);
 
 		getContentPane().add(panel, BorderLayout.CENTER);
 
@@ -51,7 +60,21 @@ public class JTable4Data extends JFrame {
 	// }
 }
 
-class JTableUtil extends JPanel {
+class TTT extends JPanel {
+	/**
+	 * <pre>
+	 * public boolean isCellEditable(int row, int column) {
+	 * 	return getModel().isCellEditable(convertRowIndexToModel(row),
+	 * 			convertColumnIndexToModel(column));
+	 * }
+	 * </pre>
+	 * 
+	 * so we can also directly rewrite the isCellEditable() in the table model.
+	 * 
+	 * @author HAN
+	 * 
+	 */
+	private static final long serialVersionUID = -8001758880985479654L;
 	private List<String> columnNameV; // declare the table column name vector
 	private List<List<Object>> tableValueV;
 	private int fixedColumn = 1; // the fixed column number
@@ -61,6 +84,8 @@ class JTableUtil extends JPanel {
 	private FloatingColumnTableModel floatingColumnTableModel;
 
 	private class FixedColumnTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = 3935656415101599023L;
+
 		@Override
 		public int getRowCount() {
 			return tableValueV.size();
@@ -83,6 +108,8 @@ class JTableUtil extends JPanel {
 	}
 
 	private class FloatingColumnTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = -2481466672947191281L;
+
 		@Override
 		public boolean isCellEditable(int row, int column) {
 			return true;
@@ -128,14 +155,14 @@ class JTableUtil extends JPanel {
 		}
 	}
 
-	public JTableUtil(List<String> columnNameV2,
-			List<List<Object>> tableValueV2, int fixedColumn) {
+	public TTT(List<String> columnNameV2, List<List<Object>> tableValueV2,
+			int fixedColumn) {
 		super();
 		setLayout(new BorderLayout());
 		this.columnNameV = columnNameV2;
 		this.tableValueV = tableValueV2;
 		this.fixedColumn = fixedColumn;
-		// create fixedColumnTablez
+		// create fixedColumnTable
 		fixedColumnTableModel = new FixedColumnTableModel();
 		fixedColumnTable = new JTable(fixedColumnTableModel);
 		ListSelectionModel fixed = fixedColumnTable.getSelectionModel();
