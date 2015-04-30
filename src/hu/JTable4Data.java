@@ -18,37 +18,37 @@ public class JTable4Data extends JFrame {
 	/**
 	 * Provide a fixed column in a table.
 	 */
+	Util util;
 
 	public JTable4Data() {
 		super();
+		showData();
+
+	}
+
+	public void showData() {
 		setTitle("Data List");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		List<String> columnNameV = new ArrayList<>();
-		columnNameV.add("日期"); // 日期作为第一列
-		for (int i = 1; i < 21; i++) { // 从1开始，加上日期，共2列
-			columnNameV.add("商品" + i);
+		util = new Util();
+
+		List<String> columnNameList = new ArrayList<>(); // 仅用于显示列表名字！！
+		for (int i = 0; i < 21; i++) { // 从1开始，加上日期，共2列
+			columnNameList.add(Util.columnStr[i]);
 		}
-		List<List<Object>> tableValueV = new ArrayList<>();
-		for (int row = 1; row < 31; row++) { // 总行数
-			List<Object> rowV = new ArrayList<>();
-			rowV.add(row); // 此列为日期列
-			for (int col = 0; col < 20; col++) { // 总列数； 从0开始，共20列
-				rowV.add((int) (Math.random() * 1000));
-			}
-			tableValueV.add(rowV);
-		}
-		final JTableUtil panel = new JTableUtil(columnNameV, tableValueV, 1);
+
+		List<List<Object>> tableValueGList = util.parseJson();
+
+		JTableUtil panel = new JTableUtil(columnNameList, tableValueGList, 1);
 
 		getContentPane().add(panel, BorderLayout.CENTER);
-
 	}
 
-	// public static void main(String[] args) {
-	// JTable4Data frame = new JTable4Data();
-	// frame.setVisible(true);
-	// }
+	public static void main(String[] args) {
+		JTable4Data frame = new JTable4Data();
+		frame.setVisible(true);
+	}
 }
 
 class JTableUtil extends JPanel {
