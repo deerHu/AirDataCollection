@@ -11,8 +11,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class Util {
-	List<String> list;
-
 	public String getHttp(String url) {
 
 		return "";
@@ -39,9 +37,11 @@ public class Util {
 		/*
 		 * List里嵌套List，将每行数据保存为List！！
 		 */
-		list = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
+
 		List<List<String>> totalList = new ArrayList<List<String>>();
 		JSONArray jsonArray = JSONArray.fromObject(jsonString);
+
 		for (int i = 0; i < jsonArray.size(); i++) {
 			JSONObject temp = (JSONObject) jsonArray.get(i);
 			String aqi = temp.getString("aqi");
@@ -88,7 +88,9 @@ public class Util {
 			list.add(station_code);
 			list.add(time_point);
 
-			totalList.add(list);
+			totalList.add(i, list);
+			list = new ArrayList<>();
+
 			// System.out.println(aqi + " " + area + " " + co + " " + co_24h +
 			// " "
 			// + no2 + " " + no2_24h + " " + o3 + " " + o3_24h + " "
@@ -97,6 +99,7 @@ public class Util {
 			// + primary_pollutant + " " + quality + " " + so2 + " "
 			// + so2_24h + " " + station_code + " " + time_point);
 		}
+
 		return totalList;
 	}
 
@@ -106,6 +109,7 @@ public class Util {
 
 		// System.out.println(str);
 		List<List<String>> list = util.parseJson(str);
+
 		for (List<String> l : list) {
 			System.out.println(l);
 		}
