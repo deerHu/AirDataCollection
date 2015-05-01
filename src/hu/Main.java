@@ -1,17 +1,16 @@
 package hu;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Main implements ActionListener {
+public class Main {
 	JFrame frame;
 	JButton button;
 	JPanel panel;
@@ -39,23 +38,21 @@ public class Main implements ActionListener {
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
 				// frame.setVisible(false);
-				frame.dispose();
+				//frame.dispose();
 
-				new Test();
-				// table = new JTable4Data();
-				// table.setVisible(true); // 必须，否则不可见
+				// new ThreadPool();
+				DbHelper db = new DbHelper();
+				List<List<Object>> dataFromDBList = null;
+				try {
+					dataFromDBList = db.getDataFromDB();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				JTable4Data frame = new JTable4Data(dataFromDBList);
+				frame.setVisible(true);
 			}
 		});
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void main(String[] args) {
-		new Main();
 	}
 }

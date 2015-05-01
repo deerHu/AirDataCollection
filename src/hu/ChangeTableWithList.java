@@ -16,6 +16,11 @@ import javax.swing.table.AbstractTableModel;
 
 public class ChangeTableWithList extends JFrame {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Provide a fixed column in a table.
 	 * 
 	 * <code><p>public boolean isCellEditable(int row, int column) {<p>
@@ -24,6 +29,7 @@ public class ChangeTableWithList extends JFrame {
 	    }<p>
 	    </code> so we can also directly rewrite the isCellEditable() in the table
 	 * model.
+	 * 
 	 * @author Gaowen
 	 * 
 	 */

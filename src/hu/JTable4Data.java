@@ -16,42 +16,40 @@ import javax.swing.table.AbstractTableModel;
 
 public class JTable4Data extends JFrame {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Provide a fixed column in a table.
 	 */
 	Util util;
 
-	public JTable4Data() {
+	public JTable4Data(List<List<Object>> tableValueGList) {
 		super();
-		showData();
-
+		showData(tableValueGList);
 	}
 
-	public void showData() {
+	public void showData(List<List<Object>> tableValueGList) {
 		setTitle("Data List");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		util = new Util();
 
 		List<String> columnNameList = new ArrayList<>(); // 仅用于显示列表名字！！
 		for (int i = 0; i < 21; i++) { // 从1开始，加上日期，共2列
 			columnNameList.add(Util.columnStr[i]);
 		}
 
-		List<List<Object>> tableValueGList = util.parseJson();
-
 		JTableUtil panel = new JTableUtil(columnNameList, tableValueGList, 1);
-
 		getContentPane().add(panel, BorderLayout.CENTER);
 	}
 
-	public static void main(String[] args) {
-		JTable4Data frame = new JTable4Data();
-		frame.setVisible(true);
-	}
 }
 
 class JTableUtil extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<String> columnNameV; // declare the table column name vector
 	private List<List<Object>> tableValueV;
 	private int fixedColumn = 1; // the fixed column number
@@ -61,6 +59,11 @@ class JTableUtil extends JPanel {
 	private FloatingColumnTableModel floatingColumnTableModel;
 
 	private class FixedColumnTableModel extends AbstractTableModel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public int getRowCount() {
 			return tableValueV.size();
@@ -83,6 +86,11 @@ class JTableUtil extends JPanel {
 	}
 
 	private class FloatingColumnTableModel extends AbstractTableModel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public boolean isCellEditable(int row, int column) {
 			return true;
