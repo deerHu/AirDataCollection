@@ -26,11 +26,10 @@ public class Main {
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 3));
 
-		testField = new JTextField();
-		testField.setText("sth");
-		panel.add(testField);
-
-		button = new JButton("see it");
+		// testField = new JTextField();
+		// testField.setText("sth");
+		// panel.add(testField);
+		button = new JButton("≤È—Ø");
 		panel.add(button);
 
 		frame.add(panel);
@@ -38,7 +37,7 @@ public class Main {
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
 				// frame.setVisible(false);
-				//frame.dispose();
+				// frame.dispose();
 
 				// new ThreadPool();
 				DbHelper db = new DbHelper();

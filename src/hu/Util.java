@@ -31,23 +31,10 @@ public class Util {
 				sb.append(str);
 			}
 			br.close();
-			System.out.println(sb.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// File file = new File("all_cities.json");
-		// try {
-		// BufferedReader br = new BufferedReader(new InputStreamReader(
-		// new FileInputStream(file), "UTF-8"));// 构造一个BufferedReader类来读取文件
-		// String str = null;
-		// while ((str = br.readLine()) != null) {// 使用readLine方法，一次读一行
-		// sb.append(str);
-		// }
-		// br.close();
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
 		return sb.toString();
 	}
 
@@ -69,7 +56,7 @@ public class Util {
 	}
 
 	public List<List<Object>> parseJson() {
-		String jsonString = getJsonFromHttp();// 从网上读取json，解析并存到数据库
+		String jsonString = loadJsonString();// 从网上读取json，解析并存到数据库
 		// List里嵌套List，将每行数据保存为List！！
 		List<Object> list = new ArrayList<Object>();
 		List<List<Object>> totalList = new ArrayList<List<Object>>();

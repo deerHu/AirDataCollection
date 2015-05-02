@@ -32,11 +32,12 @@ public class JTable4Data extends JFrame {
 	public void showData(List<List<Object>> tableValueGList) {
 		setTitle("Data List");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		List<String> columnNameList = new ArrayList<>(); // 仅用于显示列表名字！！
-		for (int i = 0; i < 21; i++) { // 从1开始，加上日期，共2列
-			columnNameList.add(Util.columnStr[i]);
+		columnNameList.add("编号");
+		for (int i = 1; i < 22; i++) { // 从1开始，加上日期，共2列
+			columnNameList.add(Util.columnStr[i - 1]);
 		}
 
 		JTableUtil panel = new JTableUtil(columnNameList, tableValueGList, 1);
