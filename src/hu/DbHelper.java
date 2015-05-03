@@ -75,10 +75,10 @@ public class DbHelper {
 	}
 
 	public PreparedStatement getPstmt() {
-		String sqlUpdate = "Insert ignore into airinfo"
+		String sqlUpdate = "Insert  into airinfo"
 				+ "(area,position_name,aqi,co,co_24h,no2,no2_24h,o3,o3_24h,o3_8h,"
 				+ "o3_8h_24h,pm10,pm10_24h,pm2_5,pm2_5_24h,primary_pollutant,quality,so2,so2_24h,station_code,time_point)"
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";// ignore
 		conn = getConnection();
 		try {
 			pstmt = conn.prepareStatement(sqlUpdate);

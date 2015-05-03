@@ -18,7 +18,7 @@ public class Util {
 			"quality", "so2", "so2_24h", "station_code", "time_point" };
 
 	public String getJsonFromHttp() {
-		String strUrl = "http://pm25.in/api/querys/all_cities.json?token=cD83yNNiFmduANwX8CUs";
+		String strUrl = "http://pm25.in/api/querys/all_cities.json?token=dk75CQsEZJ8fgYDFiKyh";// cD83yNNiFmduANwX8CUs
 		StringBuilder sb = new StringBuilder();
 
 		URL url;
@@ -56,7 +56,8 @@ public class Util {
 	}
 
 	public List<List<Object>> parseJson() {
-		String jsonString = loadJsonString();// 从网上读取json，解析并存到数据库
+		// String jsonString = loadJsonString();
+		String jsonString = getJsonFromHttp();// 从网上读取json，解析并存到数据库
 		// List里嵌套List，将每行数据保存为List！！
 		List<Object> list = new ArrayList<Object>();
 		List<List<Object>> totalList = new ArrayList<List<Object>>();
